@@ -1,2 +1,16 @@
 slide
 https://talks.godoc.org/github.com/iporsut/gotraining-slide/basic.slide#1
+
+How GO handle time format (เช่น const timeFormatLayout = "15:04:05 02/01/2006")
+02 แทนเป็น month
+01 แทนเป็นวันที่
+https://medium.com/@simplyianm/how-go-solves-date-and-time-formatting-8a932117c41c
+
+ตำแหน่งตัวแปรไหนถ้าจะไม่ใช้ ให้ใส่ _ เพราะถ้าเก็บไว้แล้วไม่ใช้ มันจะ compile error
+
+Array vs Slice
+Array: var a [5]int (fixed size)
+Slice: var a []int (not fixed size)
+
+*funct ไหนมีแนวโน้มเปลี่ยน size ของ slice จะ return pointer ใหม่ให้เราตั้ง var มารับทางซ้ายของ =
+ ส่วนที่ไม่มีเปลี่ยน (เช่นแค่ sort) ก็จะไม่มี return ค่า (sort.Ints(array))
