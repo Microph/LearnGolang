@@ -14,3 +14,18 @@ Slice: var a []int (not fixed size)
 
 *funct ไหนมีแนวโน้มเปลี่ยน size ของ slice จะ return pointer ใหม่ให้เราตั้ง var มารับทางซ้ายของ =
  ส่วนที่ไม่มีเปลี่ยน (เช่นแค่ sort) ก็จะไม่มี return ค่า (sort.Ints(array))
+
+Go จะช่วยย้าย stack -> heap อัตโนมัติ ถ้าค่าโดน ref ด้วย pointer เช่นตัวอย่าง struct ปกติจะอยู่ใน stack แต่พอโดน ref แบบนี้จะเก็บใน heap แทน
+func NewCustomer(name string, balance satang) *Customer {
+    return &Customer{
+        ID:      1, // TODO: Auto increment ID
+        Name:    name,
+        Balance: balance,
+    } // Move to heap
+}
+
+เรื่องของ method reciever
+ระวังเคส pass struct ไป method
+มันรับทั้งแบบ (c *Customer) และ (c Customer) โดยถ้าเป็น (c Customer) มันจะ copy struct ไปใหม่ ถ้าแก้อะไรแล้วค่าไม่เปลี่ยนก็ต้องสลับไป (c *Customer)
+
+ชื่อ func ขึ้นต้นด้วยตัวเล็กใช้ได้เฉพาะใน package ส่วนขึ้นต้นด้วยตัวใหญ่ใช้ข้าม package ได้
