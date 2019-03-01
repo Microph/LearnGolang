@@ -37,3 +37,7 @@ func เมจิกชื่อ init มันจะถูก call จังห
 
 แบบฝึกหัด (แก้ code ให้ test ผ่าน)
 https://github.com/cdarwin/go-koans
+
+มีตัวอย่าง program ให้อ่าน code เล่นๆ
+- web crawler
+- chat server
