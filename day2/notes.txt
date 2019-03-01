@@ -1,0 +1,15 @@
+ทำโจทย์ 2 ข้อ
+1. print star เช่นใส่ 3 ได้
+   *
+   **
+   ***
+
+2. รับ slice เช่น [2, 3, 4, 5] แล้ว filter ให้เหลือแต่เลขคู่ [2, 4]
+
+empty interface คล้าย class object ของ Java ที่ใหญ่สุด
+var v interface{}
+    v = "Hello"
+    s := v.(string) <- syntax ไว้ convert เป็น type อื่น (ต่างจากตัวแปรที่ใช้ int(ชื่อตัวแปร))
+    fmt.Println(s)
+
+type switch ตัว Println ก็ใช้ (รับ input เป็น empty interface)
