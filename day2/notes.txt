@@ -13,3 +13,27 @@ var v interface{}
     fmt.Println(s)
 
 type switch ตัว Println ก็ใช้ (รับ input เป็น empty interface)
+
+- folder structure
+.
+├── cmd
+│   ├── add.go
+│   ├── delete.go
+│   ├── edit.go
+│   ├── list.go
+│   ├── new.go
+│   ├── root.go
+│   └── show.go
+├── go.mod
+├── go.sum
+├── main.go
+└── todo
+    ├── todo.go
+    └── todo_test.go
+
+ตัวอย่าง พวก file ใน folder todo / cmd ก็จะถูก define package ชื่อตาม folder นั้น
+
+func เมจิกชื่อ init มันจะถูก call จังหวะโดน import
+
+แบบฝึกหัด (แก้ code ให้ test ผ่าน)
+https://github.com/cdarwin/go-koans
