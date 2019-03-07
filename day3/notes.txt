@@ -39,3 +39,6 @@ stmt.ExecContext(ctx, "เรียนเขียน Go", 1)
 2. return rows effected แต่บาง db ก็ไม่ support เช่น postgres
 
 ใน folder webblog เป็น exercise จาก https://github.com/iporsut/gotraining-webblog-workshop
+
+ไม่ hardcode พวก url โดยใช้ os.Getenv("ENV_NAME") ได้ ซึ่งสามารถ set variable ใน commandline (google หาตาม terminal ชนิดต่างๆ)
+ 
