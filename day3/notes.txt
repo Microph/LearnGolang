@@ -14,7 +14,7 @@ ctx := context.Background()
 b, err := sql.Open("mysql", "root:@/blogdb")
 check(err)
 
-stmt, err := db.PrepareContext(ctx, "INSERT INTO posts(title, body) values (?,?)") //<- เจาะ field ด้วย ?
+stmt, err := db.PrepareContext(ctx, "INSERT INTO posts(title, body) values (?,?)") //<- เจาะ field ด้วย ? (ขึ้นกับ package)
 check(err)
 
 result, err := stmt.ExecContext(ctx, "Learn Go", "Today we will learn how to write Go.")
@@ -23,3 +23,19 @@ check(err)
 //print id ล่าสุดเฉยๆ
 lastID, _ := result.LastInsertId()
 fmt.Println("New Record ID:", lastID)
+
+ExecContext vs QueryContext
+QueryContext -> ใช้กับแค่พวก select ที่ return results
+
+เรื่อง parseTime จาก database
+เติม ?parseTime=true เช่น
+db, err := sql.Open("mysql", "s4OU7DIrDc:tg5lI31Ypn@tcp(remotemysql.com)/s4OU7DIrDc?parseTime=true")
+https://github.com/go-sql-driver/mysql#timetime-support
+
+เวลาอ่าน doc มันจะมีบอกว่า return อะไรบ้าง เช่น
+stmt.ExecContext(ctx, "เรียนเขียน Go", 1)
+มี
+1. lastID 
+2. return rows effected แต่บาง db ก็ไม่ support เช่น postgres
+
+ใน folder webblog เป็น exercise จาก https://github.com/iporsut/gotraining-webblog-workshop
