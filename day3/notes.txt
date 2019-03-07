@@ -1,0 +1,2 @@
+slide
+https://talks.godoc.org/github.com/iporsut/gotraining-slide/webapp.slide#1
