@@ -1,2 +1,25 @@
 slide
 https://talks.godoc.org/github.com/iporsut/gotraining-slide/webapp.slide#1
+
+ตัวอย่าง ทำ prepared statement
+ctx := context.Background()
+    check := func(err error) {
+        if err != nil {
+            log.Println(err)
+            os.Exit(1)
+        }
+    }
+(เพื่อความสะดวกในการเช็ค error จึงเก็บ func เช็คลงตัวแปร)
+
+b, err := sql.Open("mysql", "root:@/blogdb")
+check(err)
+
+stmt, err := db.PrepareContext(ctx, "INSERT INTO posts(title, body) values (?,?)") //<- เจาะ field ด้วย ?
+check(err)
+
+result, err := stmt.ExecContext(ctx, "Learn Go", "Today we will learn how to write Go.")
+check(err)
+
+//print id ล่าสุดเฉยๆ
+lastID, _ := result.LastInsertId()
+fmt.Println("New Record ID:", lastID)
