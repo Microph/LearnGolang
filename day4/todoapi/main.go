@@ -105,7 +105,7 @@ func main() {
 		param.Title = todo.Title
 		_, err = collection.UpdateMany(ctx,
 			bson.D{{"_id", id}},
-			bson.D{{"$set", bson.M{"title": param.Title}}})
+			bson.D{{"$set", param}}) //better pattern
 		check(c, err)
 
 		c.JSON(http.StatusOK, nil)
