@@ -3,7 +3,12 @@ https://talks.godoc.org/github.com/iporsut/gotraining-slide/webapp-day2.slide#1
 
 ลง gin: go get github.com/gin-gonic/gin
 ถ้าไม่ใช้ go get จริงๆ ใส่ require เช่น require github.com/gin-gonic/gin
-ใน file .mod แล้วตอน build มันจะวิ่งหา package ให้เอง
+ใน file .mod แล้วตอน build มันจะวิ่งหา package ให้ตามนั้นเอง
+
+เรื่องของ mod file กับ go get
+ถ้าเราสั่ง go get โดยที่ยังไม่มี mod file มันจะไป update ที่ go path ซึ่งคุม version ยาก
+ถ้ามี mod file แล้ว มันจะ update ทั้ง mod file และ go path ด้วย แต่เวลาอ้างอิง จะเอา mod file
+เป็นใหญ่ก่อน
 
 สมมติถ้าอยาก render JSON 
 type Task struct {
@@ -26,3 +31,5 @@ rm -rf ~/go/pkg/mod/golang.org/x/text@v0.3.0 <- เปลี่ยนเลข v
 go get golang.org/x/text
 
 ถ้ายัง error ก็ check version ใน mod file และแก้ให้ถูกต้อง
+
+context ของ MongoDB driver กับ Go ต่างกัน (หาอ่านเพิ่ม)
