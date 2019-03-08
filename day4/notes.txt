@@ -1,0 +1,4 @@
+slide
+https://talks.godoc.org/github.com/iporsut/gotraining-slide/webapp-day2.slide#1
+
+ลง gin: go get github.com/gin-gonic/gin
