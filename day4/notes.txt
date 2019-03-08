@@ -33,3 +33,6 @@ go get golang.org/x/text
 ถ้ายัง error ก็ check version ใน mod file และแก้ให้ถูกต้อง
 
 context ของ MongoDB driver กับ Go ต่างกัน (หาอ่านเพิ่ม)
+
+UpdateMany/UpdateOne ใช้ $set บ่อย (แก้เฉพาะ parameter นั้นๆ) แต่ถ้าอยาก add member เข้า array ใช้ $push
+ยังมี operator อื่นๆ อีกด้วย 
