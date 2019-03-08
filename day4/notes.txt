@@ -2,3 +2,27 @@ slide
 https://talks.godoc.org/github.com/iporsut/gotraining-slide/webapp-day2.slide#1
 
 ลง gin: go get github.com/gin-gonic/gin
+ถ้าไม่ใช้ go get จริงๆ ใส่ require เช่น require github.com/gin-gonic/gin
+ใน file .mod แล้วตอน build มันจะวิ่งหา package ให้เอง
+
+สมมติถ้าอยาก render JSON 
+type Task struct {
+	Desc string `json:"desc"`
+	Done bool   `json:"done"`
+}
+
+โดยให้แสดงชื่อตัวแปรขึ้นต้นด้วยตัวเล็ก เปลี่ยนชื่อตรงๆ ไม่ได้ เพราะมันจะกลายเป็นแสดง struct เปล่า
+ต้องใช้ struct tag
+`json:"desc"`
+`json:"done"`
+
+สร้าง MongoDB database ไว้ลองที่ https://console.clever-cloud.com
+
+ถ้าติดปัญหาตอนโหลด package ให้ clear modcache
+go clean -modcache หรือ
+
+ตัวอย่างลบ package และลงใหม่
+rm -rf ~/go/pkg/mod/golang.org/x/text@v0.3.0 <- เปลี่ยนเลข version ตามต้องการ
+go get golang.org/x/text
+
+ถ้ายัง error ก็ check version ใน mod file และแก้ให้ถูกต้อง

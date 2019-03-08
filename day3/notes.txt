@@ -42,3 +42,4 @@ stmt.ExecContext(ctx, "เรียนเขียน Go", 1)
 
 ไม่ hardcode พวก url โดยใช้ os.Getenv("ENV_NAME") ได้ ซึ่งสามารถ set variable ใน commandline (google หาตาม terminal ชนิดต่างๆ)
  
+ ลองต่อ sql ที่ remotemysql.com
