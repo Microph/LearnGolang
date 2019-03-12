@@ -1,0 +1,19 @@
+slide
+https://talks.godoc.org/github.com/iporsut/gotraining-slide/day5.slide#1
+
+IO
+r := strings.NewReader("some io.Reader stream to be read\n")
+^ เป็นการแปลง string ให้ไปเป็น reader เหมาะกับการใช้ test
+
+io.Copy(os.Stdout, os.Stdin) <- เหมือน echo ใน terminal
+แต่จริงๆ สามารถ Redirect Stdin หรือ Stdout ได้ โดยใช้ command "[ลูกศร < หรือ >] somefile.txt" มันจะอ่านไฟล์/เขียนลง file นั้นแทน
+
+Multireader มันจะ return Type Reader ออกมาให้
+- example 1
+io.MultiReader(r1, r2, r3)
+
+- example 2
+readers[] (เป็น slice)
+io.MultiReader(readers...) <- ... แปลว่ามันจะกระจาย element ใน slice ลง comma ให้
+
+MultiWriter ตัวอย่างการใช้งานที่เจอบ่อยก็คือ write ทีเดียว ออกทั้งไฟล์และหน้าจอ
