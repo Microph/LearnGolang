@@ -52,3 +52,5 @@ CSVWriter ถ้าใช้ Write (ที่ไม่ใช้ WriteAll) ต้
 ---------------------------------
 
 go.mod นอกจาก specify version ด้วยเลขได้แล้ว ยัง specify ด้วย git commit id ได้ด้วย
+
+HTTPS -> RunTLS (self sign) https://letsencrypt.org/docs/certificates-for-localhost/
