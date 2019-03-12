@@ -8,6 +8,13 @@ r := strings.NewReader("some io.Reader stream to be read\n")
 io.Copy(os.Stdout, os.Stdin) <- เหมือน echo ใน terminal
 แต่จริงๆ สามารถ Redirect Stdin หรือ Stdout ได้ โดยใช้ command "[ลูกศร < หรือ >] somefile.txt" มันจะอ่านไฟล์/เขียนลง file นั้นแทน
 
+มี Method ReadAll ที่จะเอาข้อมูลเก็บลง byte[] ซึ่งถ้าลองใช้แทน จะมี step ตามนี้
+เราก็จะต้องพิมพ์เยอะกว่าดังนี้
+-Open()     --|
+              |-> รวบไปใช้ Method ReadFile แทนได้
+-ReadAll()  --|
+-Print()
+
 Multireader มันจะ return Type Reader ออกมาให้
 - example 1
 io.MultiReader(r1, r2, r3)
@@ -17,3 +24,11 @@ readers[] (เป็น slice)
 io.MultiReader(readers...) <- ... แปลว่ามันจะกระจาย element ใน slice ลง comma ให้
 
 MultiWriter ตัวอย่างการใช้งานที่เจอบ่อยก็คือ write ทีเดียว ออกทั้งไฟล์และหน้าจอ
+
+err := ioutil.WriteFile("testdata/hello", message, 0644) เลข 0644 คร่าวๆ คือกำกับ UNIX-based permission แต่ละกลุ่ม
+
+io.ReadCloser คือ Reader ที่มี Method Close มี func NopCloser แปลง Reader ให้เป็น ReadCloser ได้ด้วย
+
+string กับ byte[] มีการใช้งานต่างๆ ใกล้เคียงกันมาก 
+
+Bingo https://medium.com/@iPorsut/vscode-go-auto-complete-ด้วย-bingo-language-server-protocol-82e3fff345f
