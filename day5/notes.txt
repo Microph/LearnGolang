@@ -32,3 +32,23 @@ io.ReadCloser คือ Reader ที่มี Method Close มี func NopClose
 string กับ byte[] มีการใช้งานต่างๆ ใกล้เคียงกันมาก 
 
 Bingo https://medium.com/@iPorsut/vscode-go-auto-complete-ด้วย-bingo-language-server-protocol-82e3fff345f
+
+ตัวอย่างเรียก command line ผ่าน go
+cmd := exec.Command("tr", "a-z", "A-Z") เท่ากับ tr a-z A-Z
+
+---------------------------------
+เรื่องของ encode JSON/XML/CSV (Comma-separated values)
+
+ตัวอย่าง Encoder
+enc := json.NewEncoder(os.Stdout)
+err := enc.Encode(t)
+จะเห็นว่าสามารถร้อย data จาก Stdout ไปเข้า encode ได้ทันทีโดยไม่ต้องเอาไปพักใน buffer อะไรก่อนเลย
+
+Decode แนวเดียวกับ encode โดยต้องประกาศก่อน แล้วค่อยเรียก Method ของมัน
+
+CSVReader พอ ReadAll มันจะ return มาให้เป็น 2D array เลย
+CSVWriter ถ้าใช้ Write (ที่ไม่ใช้ WriteAll) ต้อง flush ตอนท้ายเพื่อสั่ง write สิ่งที่ค้างใน buffer จริงๆ
+
+---------------------------------
+
+go.mod นอกจาก specify version ด้วยเลขได้แล้ว ยัง specify ด้วย git commit id ได้ด้วย
