@@ -34,7 +34,8 @@ func check(c *gin.Context, err error) {
 }
 
 func main() {
-	mongoURI := "mongodb://u30cbkfrc67odtpvtbyq:Zyl4Q2lK6zQKr4fRga4L@bnbfqre3af2qu3i-mongodb.services.clever-cloud.com:27017/bnbfqre3af2qu3i"
+	//mongoURI := "mongodb://u30cbkfrc67odtpvtbyq:Zyl4Q2lK6zQKr4fRga4L@bnbfqre3af2qu3i-mongodb.services.clever-cloud.com:27017/bnbfqre3af2qu3i"
+	mongoURI := "mongodb://mongodb:27017"
 	client, err := mongo.Connect(context.Background(), options.Client().ApplyURI(mongoURI))
 	if err != nil {
 		log.Println(err)
