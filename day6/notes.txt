@@ -10,3 +10,5 @@ path ใน os host อยู่ทางซ้าย : (ในที่นี�
 ตัวอย่าง dockerfile ใน folder Dockerfile intro
 1. sudo docker build -t myweb:latest .
 2. sudo docker run -d --rm --name myweb -p 8000:80 myweb
+
+ใน todoapi แสดงตัวอย่างเขียน multi stage (มี FROM มากกว่า 1)
