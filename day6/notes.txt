@@ -6,3 +6,7 @@ https://talks.godoc.org/github.com/iporsut/gotraining-slide/day6.slide#1
 
 path ใน os host อยู่ทางซ้าย : (ในที่นี้คือ $PWD/mongodata)
 ส่วน path ใน container คือ /data/db ซึ่งรู้จากการอ่าน doc ของ image นั้น
+
+ตัวอย่าง dockerfile ใน folder Dockerfile intro
+1. sudo docker build -t myweb:latest .
+2. sudo docker run -d --rm --name myweb -p 8000:80 myweb
