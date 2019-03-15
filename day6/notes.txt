@@ -1,0 +1,8 @@
+slide
+https://talks.godoc.org/github.com/iporsut/gotraining-slide/day6.slide#1
+
+ตัวอย่าง mapping ใน docker command
+-v $PWD/mongodata:/data/db -p 27017:27017 mongo
+
+path ใน os host อยู่ทางซ้าย : (ในที่นี้คือ $PWD/mongodata)
+ส่วน path ใน container คือ /data/db ซึ่งรู้จากการอ่าน doc ของ image นั้น
