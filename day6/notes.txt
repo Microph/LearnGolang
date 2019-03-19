@@ -29,7 +29,7 @@ services:
       - 27017:27017
 *indent มีความหมาย และควรทำโดยกด space 2 ที
 แปลตัวอย่างคร่าวๆ: สร้าง 2 services
-1. todoapi - เอา image จาก root dir (.)
+1. todoapi - build image จาก root dir (.)
 2. mongodb - เอา image จาก mongo:latest (build ไว้ก่อนในเครื่องแล้ว)
  และ map port, config ค่าต่างๆ ตามที่ใส่ไป 
 
