@@ -1,4 +1,4 @@
-module calc
+module fizzbuzz
 
 go 1.12
 

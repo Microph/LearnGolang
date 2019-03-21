@@ -3,4 +3,8 @@ https://talks.godoc.org/github.com/iporsut/gotraining-slide/day7.slide#1
 
 เขียน test
 
-non standard package ชื่อ testify ช่วยให้เขียนง่ายขึ้น
+go test -v ถ้ามี -v จะ print แสดงเป็นเคสๆ ให้ด้วย
+
+non standard package ชื่อ testify ช่วยให้เขียนง่ายขึ้น (เช่น มีพวก assert ให้)
+
+Example Test เขียนแล้วมันจะไปแสดงใน doc example code ให้ด้วย
