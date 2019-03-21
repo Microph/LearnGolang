@@ -12,3 +12,9 @@ Example Test เขียนแล้วมันจะไปแสดงใน 
 test http มี 2 ท่า
 1. ปั้น input แล้ว call func ตรงๆ (ดู TestAddHandler)
 2. mock new server โดย add func handler ที่ต้องการเทสลงไป แล้วลอง call จริง (ดู TestSubHandler) มักใช้เทสกรณี call 3rd party
+
+test http router
+ปกติ http.Handle ใช้ feature ของ type http.ServeMux ในการ routing จาก request ไปหา Handler ที่ถูกต้อง
+ถ้าจะ test routing หลายๆ ตัว ก็แนะนำให้ทำแบบตัวอย่าง method TestRouter
+1. set route ก่อน ด้วย http.HandleFunc
+2. แล้วค่อย httptest.NewServer(http.DefaultServeMux) = สร้างเซิฟโดยไม่ map route เพิ่ม
