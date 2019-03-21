@@ -18,3 +18,31 @@ test http router
 ถ้าจะ test routing หลายๆ ตัว ก็แนะนำให้ทำแบบตัวอย่าง method TestRouter
 1. set route ก่อน ด้วย http.HandleFunc
 2. แล้วค่อย httptest.NewServer(http.DefaultServeMux) = สร้างเซิฟโดยไม่ map route เพิ่ม
+
+Test แบบต่อ dependency (เช่น db): ทำ interface คั่นแล้ว inject dependency ปลอมนั้นไป (เช่น handler)
+
+----------------------------------------
+
+Benchmark Testing
+ตัวอย่าง command: go test -benchmem -bench=BenchmarkFib10 -v -run=xxx
+-run=xxx เป็น option บังคับเทส method BenchmarkFib10 อันเดียว (กรณีมีหลาย test method ใน 1 ไฟล์)
+-benchmem ไว้โชว์ memory
+
+ถ้าต้องการ coverage test: 
+go test -coverprofile=coverage
+go tool cover -html=coverage //เปิด html report
+
+----------------------------------------
+
+Build tags 
+(import "go/build")
+
+มีไว้คัดว่าจะ build/ไม่build file ไหนบ้าง
+
+ตัวอย่าง (พิมพ์ที่ต้น file)
+// +build linux,386 darwin,!cgo
+
+แปลว่า
+(linux AND 386) OR (darwin AND (NOT cgo))
+
+ตอนสั่ง build ก็ -tag [tag name]
