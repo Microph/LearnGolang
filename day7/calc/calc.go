@@ -29,3 +29,27 @@ func AddHandler(w http.ResponseWriter, r *http.Request) {
 	b, _ := strconv.Atoi(r.FormValue("b"))
 	fmt.Fprintf(w, `{"result":%d}`, a+b)
 }
+
+func SubHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	a, _ := strconv.Atoi(r.FormValue("a"))
+	b, _ := strconv.Atoi(r.FormValue("b"))
+	fmt.Fprintf(w, `{"result":%d}`, a-b)
+}
+
+/*
+func SetAddRouter() {
+	http.HandleFunc("/add/", AddHandler)
+}
+
+func SetSubRouter() {
+	http.HandleFunc("/sub/", AddHandler)
+}
+*/
+
+//refactor the upper tests
+func SetRouter() {
+	http.HandleFunc("/add/", AddHandler)
+	http.HandleFunc("/sub/", SubHandler)
+}

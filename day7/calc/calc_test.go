@@ -56,3 +56,83 @@ func TestAddHandler(t *testing.T) {
 	assert.Equal(t, "application/json", resp.Header.Get("Content-Type"))
 	assert.Equal(t, `{"result":30}`, string(body))
 }
+
+func TestSubHandler(t *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(SubHandler))
+	defer ts.Close()
+
+	req, _ := http.NewRequest("GET", ts.URL+"/sub?a=30&b=20", nil)
+	resp, _ := http.DefaultClient.Do(req)
+	defer resp.Body.Close()
+	body, _ := ioutil.ReadAll(resp.Body)
+	assert.Equal(t, http.StatusOK, resp.StatusCode)
+	assert.Equal(t, "application/json", resp.Header.Get("Content-Type"))
+	assert.Equal(t, `{"result":10}`, string(body))
+}
+
+/*
+func TestAddRouter(t *testing.T) {
+	SetAddRouter()
+
+	ts := httptest.NewServer(http.DefaultServeMux)
+	defer ts.Close()
+
+	req, _ := http.NewRequest("GET", ts.URL+"/add?a=10&b=20", nil)
+	resp, _ := http.DefaultClient.Do(req)
+	defer resp.Body.Close()
+	body, _ := ioutil.ReadAll(resp.Body)
+	assert.Equal(t, http.StatusOK, resp.StatusCode)
+	assert.Equal(t, "application/json", resp.Header.Get("Content-Type"))
+	assert.Equal(t, `{"result":30}`, string(body))
+}
+
+func TestSubRouter(t *testing.T) {
+	SetSubRouter()
+
+	ts := httptest.NewServer(http.DefaultServeMux)
+	defer ts.Close()
+
+	req, _ := http.NewRequest("GET", ts.URL+"/sub?a=10&b=20", nil)
+	resp, _ := http.DefaultClient.Do(req)
+	defer resp.Body.Close()
+	body, _ := ioutil.ReadAll(resp.Body)
+	assert.Equal(t, http.StatusOK, resp.StatusCode)
+	assert.Equal(t, "application/json", resp.Header.Get("Content-Type"))
+	assert.Equal(t, `{"result":30}`, string(body))
+}
+*/
+
+//Good practice for multiple routes test (which trigger panic)
+func TestRouter(t *testing.T) {
+	SetRouter()
+
+	testCases := []struct {
+		name   string
+		path   string
+		result int
+	}{
+		{"Add", "/add?a=10&b=20", 30},
+		{"Sub", "/sub?a=20&b=10", 10},
+	}
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			testRouter(t, tc.path, tc.result)
+		})
+	}
+}
+
+//Trick: use lowercase to prevent GO from automatically run the method for testing
+func testRouter(t *testing.T, path string, result int) {
+	ts := httptest.NewServer(http.DefaultServeMux)
+	defer ts.Close()
+
+	req, _ := http.NewRequest("GET", ts.URL+path, nil)
+	resp, _ := http.DefaultClient.Do(req)
+	defer resp.Body.Close()
+
+	body, _ := ioutil.ReadAll(resp.Body)
+	assert.Equal(t, http.StatusOK, resp.StatusCode)
+	assert.Equal(t, "application/json", resp.Header.Get("Content-Type"))
+	expectJSON := fmt.Sprintf(`{"result":%d}`, result)
+	assert.Equal(t, expectJSON, string(body))
+}
