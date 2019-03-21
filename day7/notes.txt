@@ -3,7 +3,7 @@ https://talks.godoc.org/github.com/iporsut/gotraining-slide/day7.slide#1
 
 เขียน test
 
-go test -v ถ้ามี -v จะ print แสดงเป็นเคสๆ ให้ด้วย
+go test command ถ้ามี -v จะ print แสดงเป็นเคสๆ ให้ด้วย
 
 non standard package ชื่อ testify ช่วยให้เขียนง่ายขึ้น (เช่น มีพวก assert ให้)
 
