@@ -36,4 +36,6 @@ func TestDiv(t *testing.T) {
 func ExampleAdd() {
 	n := Add(10, 20)
 	fmt.Println(n)
+	//Output:
+	//30
 }
