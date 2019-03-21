@@ -1,12 +1,15 @@
 package calc
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func TestAdd(t *testing.T) {
 	n := Add(10, 20)
-	if n != 30 {
-		t.Errorf("Expect 30 but got %d", n)
-	}
+	assert.Equal(t, 30, n)
 }
 
 func TestSub(t *testing.T) {
@@ -28,4 +31,9 @@ func TestDiv(t *testing.T) {
 	if n != 0.5 {
 		t.Errorf("Expect 0.5 but got %f", n)
 	}
+}
+
+func ExampleAdd() {
+	n := Add(10, 20)
+	fmt.Println(n)
 }
