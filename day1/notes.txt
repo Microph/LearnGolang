@@ -24,7 +24,7 @@ func NewCustomer(name string, balance satang) *Customer {
     } // Move to heap
 }
 
-เรื่องของ method reciever
+เรื่องของ method receiver
 ระวังเคส pass struct ไป method
 มันรับทั้งแบบ (c *Customer) และ (c Customer) โดยถ้าเป็น (c Customer) มันจะ copy struct ไปใหม่ ถ้าแก้อะไรแล้วค่าไม่เปลี่ยนก็ต้องสลับไป (c *Customer)
 
