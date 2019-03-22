@@ -1,1 +1,52 @@
-Embedded struct
+﻿Final Test: https://gist.github.com/iporsut/0e8285bb7c878bfdc72eb545933f8c7b
+Final Test notes
+- time zone เวลาเป็น +0
+- id จริงๆ เป็นอะไรก็ได้ แต่ต้อง unique
+- error ส่ง 500 ได้หมด
+- database ใช้อะไรก็ได้ (รวมถึงเก็บลงตัวแปรก็ได้)
+
+ตัวอย่างวิธี set env variable
+>set DB_URI=value
+>echo %DB_URI% //check ค่าที่ตั้งไป
+
+- Embedded Struct
+type Address struct {
+    HouseNumber string
+    Road        string
+    Village     string
+}
+
+type PersonInfo struct {
+    FirstName   string
+    LastName    string
+    Address //สังเกตว่าไม่ต้องตั้งชื่อได้
+}
+
+ตอน get field ก็ทำได้ทั้ง
+kanok := PersonInfo{
+    Name: "Kanok",
+    LastName: "Wongnai",
+    Address: Address{
+        HouseNumber: "1112",
+        Road: "Runner",
+        Village: "Farm",
+    },
+}
+kanokHouseNumber := kanok.Address.HouseNumber
+หรือ
+kanokHouseNumber := kanok.HouseNumber
+และเรียก method ที่ Address implement แบบนี้ได้ด้วย kanok.SomeMethodFromAddress()
+
+- Reflection
+typ := reflect.TypeOf(emp)
+เรียก detail เช่น typ.Name(), typ.Kind(), ...
+
+- Generate Code
+Omise ทำไว้ ศึกษาใน git ได้
+
+- Profiling
+pprof tool
+ตอน command benchmark เติม 
+option ต่างๆ ได้ โดยที่มันจะ gen scv แสดง report เปิดดูใน web browser
+-cpuprofile 
+-memprofile
