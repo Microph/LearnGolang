@@ -36,3 +36,18 @@ context ของ MongoDB driver กับ Go ต่างกัน (หาอ�
 
 UpdateMany/UpdateOne ใช้ $set บ่อย (แก้เฉพาะ parameter นั้นๆ) แต่ถ้าอยาก add member เข้า array ใช้ $push
 ยังมี operator อื่นๆ อีกด้วย 
+
+ตัวอย่าง wrap error
+func (h *Handler) wrapError(gh func(*gin.Context) error) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		if err := gh(c); err != nil {
+			if err == ErrNotFound {
+				c.AbortWithError(http.StatusNotFound, err)
+			} else {
+				c.AbortWithError(http.StatusInternalServerError, err)
+			}
+		}
+	}
+}
+
+แทนที่จะใช้ func ชื่อ gh ตรงๆ ก็ call ผ่าน wrapError(gh) ซึ่งจะ return func ใหม่ที่พยายาม call gh แต่ถ้า gh ส่ง error ก็จะี logic ไว้  handle error นั้นต่อ 
